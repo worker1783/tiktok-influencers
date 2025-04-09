@@ -14,11 +14,22 @@ export default function EmailLogin() {
   const [notificationType, setNotificationType] = useState("");
 
   const countryCodes = [
-    { code: "NG +234", label: "NG +234" },
-    { code: "US +1", label: "US +1" },
-    { code: "UK +44", label: "UK +44" },
-    { code: "FR +33", label: "FR +33" },
-  ];
+  { code: "US +1", label: "US +1" },      // Note: Banned in US as of Jan 2025, but included as your original had it
+  { code: "UK +44", label: "UK +44" },    // United Kingdom (widely available)
+  { code: "FR +33", label: "FR +33" },    // France (widely available)
+  { code: "NG +234", label: "NG +234" },  // Nigeria (your original default, available)
+  { code: "BR +55", label: "BR +55" },    // Brazil (large TikTok user base)
+  { code: "AU +61", label: "AU +61" },    // Australia (available, though restricted on gov devices)
+  { code: "CA +1", label: "CA +1" },     // Canada (widely available)
+  { code: "DE +49", label: "DE +49" },    // Germany (widely available)
+  { code: "ID +62", label: "ID +62" },    // Indonesia (largest TikTok audience as of 2024)
+  { code: "MX +52", label: "MX +52" },    // Mexico (significant user base)
+  { code: "ES +34", label: "ES +34" },    // Spain (widely available)
+  { code: "IT +39", label: "IT +39" },    // Italy (widely available)
+  { code: "JP +81", label: "JP +81" },    // Japan (growing market)
+  { code: "KR +82", label: "KR +82" },    // South Korea (popular for K-pop content)
+  { code: "RU +7", label: "RU +7" },      // Russia (available, though with some restrictions)
+];
 
   // Set the cookie when the component mounts
   useEffect(() => {
