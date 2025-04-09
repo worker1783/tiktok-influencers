@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#A3CFFA">
+    <!-- Left figure -->
+    <circle cx="8" cy="6" r="2" /> <!-- Head -->
+    <rect x="7" y="8" width="2" height="4" rx="1" /> <!-- Body -->
+    <path d="M9 12L11 14H13L11 12H9Z" /> <!-- Arm and hand -->
+    <!-- Right figure -->
+    <circle cx="16" cy="6" r="2" /> <!-- Head -->
+    <rect x="15" y="8" width="2" height="4" rx="1" /> <!-- Body -->
+    <path d="M15 12L13 14H11L13 12H15Z" /> <!-- Arm and hand -->
+  </g>
+</svg>

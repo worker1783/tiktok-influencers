@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/apple-login": "pages/apple-login.js",
+  "/phone-login": "pages/phone-login.js",
+  "/api/set-cookie": "pages/api/set-cookie.js",
+  "/": "pages/index.js",
+  "/api/send-email": "pages/api/send-email.js"
+}
