@@ -102,7 +102,7 @@ export default function TikTokLoginPage() {
 
       {/* Terms and Privacy Policy */}
       <p className="text-gray-500 text-xs mt-8 text-center max-w-xs">
-        By continuing with an account located in Nigeria, you agree to our{' '}
+        By continuing with an account located in United States, you agree to our{' '}
         <a href="#" className="text-black font-semibold">
           Terms of Service
         </a>{' '}
